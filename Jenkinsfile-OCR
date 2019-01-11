@@ -1,0 +1,16 @@
+node {
+  stage('Get Source') {
+//    deleteDir()
+    checkout scm
+  }
+  stage('Scan') {
+    sh "mkdir build"
+    dir('build') {
+      for (n = 5; n <= 79; n++) {
+        sh "TESSDATA_PREFIX=${WORKSPACE}/tessdata tesseract ${WORKSPACE}/scans/${String.format('%02d', n)}.tiff output${String.format('%02d', n)} -l deu"
+      }
+      sh 'cat output* > text.txt'
+      archiveArtifacts 'text.txt'
+    }
+  }	
+}

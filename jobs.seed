@@ -1,0 +1,42 @@
+import jenkins.model.Jenkins
+
+def job = Jenkins.instance.getItem(JOB_NAME)
+def cred = job.SCMs[0].properties.userRemoteConfigs[0].credentialsId
+def repoUrl = job.SCMs[0].properties.userRemoteConfigs[0].url
+
+multibranchPipelineJob('generate-documents') {
+	branchSources {
+		git {
+			remote repoUrl
+			credentialsId cred
+		}
+	}
+	orphanedItemStrategy {
+		discardOldItems {
+			numToKeep(20)
+		}
+	}
+}
+
+pipelineJob('OCR') {
+	logRotator {
+		numToKeep(5)
+	}
+	definition {
+		cpsScm {
+			scm {
+				git {
+					remote {
+						credentials cred
+						url repoUrl
+					}
+				}
+			}
+			scriptPath 'Jenkinsfile-OCR'
+		}
+	}
+}
+
+queue('generate-documents')
+queue('OCR')
+
