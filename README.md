@@ -1,12 +1,6 @@
 # Max Mohr: Frau Marie's Gast
 
 
-## Quellenlage
-
-Es stehen keine weiteren Quellen zur Verfügung als die gedruckte
-Erstausgabe.
-
-
 ## Struktur
 
 ### Quellcode
