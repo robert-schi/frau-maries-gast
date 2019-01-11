@@ -1,0 +1,81 @@
+%% Titel.
+
+%%SuppressWarnings("InputStyle")
+%%SuppressWarnings("ContentCheck")
+
+\input{definitions}
+
+\begin{titlepage}
+\pagestyle{empty}
+
+\begin{center}
+
+\buchautor{}\enspace$\cdot$\enspace\buchtitel{}
+
+\cleartooddpage
+
+\null
+
+\vspace{4.25ex}
+\usekomafont{title}\LARGE
+\buchautor{}
+
+\vspace{4ex}
+\usekomafont{title}\Huge
+\ifdefined\ebook
+\textcolor{c-headline}{\buchtitel}
+\else
+\buchtitel
+\fi
+
+\vspace{2ex}
+
+\usekomafont{title}\large
+Ein Roman
+
+\vfill
+
+\normalfont\normalsize
+Bearbeitung dieser Ausgabe\\
+durch Robert Schimpfle
+
+\null
+
+%\vspace*{1ex}
+
+\clearpage
+
+\null
+
+\vfill
+
+\normalfont\small
+\begin{center}
+© 2019 Robert Schimpfle\\
+\ifdefined\ebook
+Zeppelinstraße 13a,
+86415 Mering\\
+Kontakt per E-Mail:
+
+\vspace*{0.65ex}
+
+\includegraphics[height=2.2ex]{email-robert-schimpfle.png}\\
+\vspace*{-0.45ex}
+Dieses Buch existiert auch text- und seitenidentisch\\
+als gedruckte Buchhandelsausgabe.
+\else
+Herstellung und Verlag:\\
+BoD – Books on Demand, Norderstedt\\
+ISBN \ISBN{}
+
+\vspace{0.5ex}
+
+Dieses Buch ist text- und seitenidentisch\\
+als E-Book online verfügbar (Stand\kern 0.05em: \standonline{})\kern 0.05em:\\
+\textit{https\kern 0.05em:\kern 0.05em//github.com/robert-schi/\allowbreak{}frau-maries-gast/\allowbreak{}releases/download/v1.0/text-ebook.pdf}
+\fi
+\end{center}
+
+\end{center}
+
+\end{titlepage}

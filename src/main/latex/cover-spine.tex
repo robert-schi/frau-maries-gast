@@ -1,0 +1,26 @@
+\documentclass{scrartcl}
+\input{commons}
+\input{definitions}
+
+\usepackage{geometry}
+\usepackage{graphicx}
+\usepackage{libertine}
+
+\geometry{
+  paperwidth=\SpineWidth,%
+  paperheight=\dimexpr\Trimming+\Trimming+\CoverHeight\relax,%
+  left=\glueexpr \dimexpr \SpineWidth - \glueexpr \FontSizeSpine / 6 * 5 \relax \relax / 2 \relax,%
+  right=0cm,%
+  top=\dimexpr\Trimming+2cm\relax,%
+  bottom=0.1cm,%
+  footskip=0.0 in%
+}
+
+\pagestyle{empty}
+
+\begin{document}%
+\setlength\parindent{0ex}%
+\noindent%
+\rotatebox{90}{\noindent{\fontsize{\FontSizeSpine}{\FontSizeSpine}\biolinumLF\selectfont{\buchautor{}\hspace{2em}\color{white}\textbf{\buchtitel{}}}}}
+
+\end{document}

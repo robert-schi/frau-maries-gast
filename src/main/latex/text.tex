@@ -1,0 +1,261 @@
+%%SuppressWarnings("InputStyle")
+%%SuppressWarnings("ContentCheck")
+\ifdefined\ebook
+  \documentclass[fontsize=11pt,headings=small,oneside]{scrbook}
+\else
+  \documentclass[fontsize=11pt,headings=small]{scrbook}
+\fi
+
+\setlength{\parskip}{0pt}
+\setlength{\emergencystretch}{3em}
+
+\usepackage[utf8]{inputenc}
+
+\usepackage[T1]{fontenc}
+
+\usepackage[german]{babel}
+\usepackage[babelshorthands]{polyglossia}
+\setmainlanguage[spelling=new]{german}
+
+\usepackage[paperwidth=135mm,paperheight=215mm,includefoot]{geometry}
+\usepackage{scrlayer-scrpage}
+\rofoot*{\pagemark}
+\cofoot*{}
+\pagestyle{scrheadings}
+
+% Bindungskorrektur, Stücke
+\typearea[5mm]{13}
+
+\usepackage{lmodern}
+
+\usepackage[pagewise]{lineno}
+
+\usepackage{color}
+
+% Counters als Nummer verwenden.
+\usepackage{refcount}
+
+\usepackage{ifthen}
+
+\usepackage{fontspec}
+\usepackage{libertine}
+
+\usepackage{polyglossia}
+\setdefaultlanguage[spelling=old]{german}
+
+\usepackage{calc}
+
+\usepackage{lettrine}
+
+\usepackage{verse}
+
+\usepackage{microtype}
+
+\usepackage[strict]{changepage}
+ 
+\usepackage{atbegshi}% http://ctan.org/pkg/atbegshi
+
+\usepackage{graphicx}
+
+\usepackage{endnotes}
+
+\usepackage{xpatch}
+
+\usepackage{scalerel}
+
+%\definecolor{grey}{rgb}{0.5,0.5,0.5}
+\def\ellipse#1{[#1]}
+
+% Überschrift der Endnoten verschwinden lassen.
+\renewcommand{\notesname}{\vspace{-1cm}}
+
+\makeatletter
+\xpretocmd{\theendnotes}{%
+  \xpatchcmd{\@makeenmark}{\hbox{\@textsuperscript{\normalfont\@theenmark}}}{%
+%   \hbox{\normalfont\theenmark.\space}%
+   \hbox{\normalfont\theenmark\hspace{1em}}%
+ }{}{}%
+}{}{}
+\makeatother
+
+
+\input{commons}
+
+\ifdefined\ebook
+  \AtBeginDocument{\AtBeginShipoutNext{\AtBeginShipoutDiscard}}
+\fi
+
+% Überschriften zentrieren.
+\renewcommand*{\raggedsection}{\centering}
+
+\newcommand\cleartooddpage{\thispagestyle{empty}\clearpage\thispagestyle{empty}
+  \ifodd\value{page}\else\null\clearpage\thispagestyle{empty}\fi}
+
+\setcounter{tocdepth}{2}
+\setcounter{secnumdepth}{-2}
+
+\DeclareTOCStyleEntry[indent=1em]{tocline}{subsection}
+\DeclareTOCStyleEntry[beforeskip=0.5ex]{default}{subsection}
+
+\ifdefined\ebook
+\addtokomafont{chapter}{\color{c-headline}}
+\fi
+
+\addtokomafont{chapterentry}{\rmfamily\textnormal}
+
+
+\begin{document}
+
+%\fontdimen2\font=0.4em% interword space
+%\fontdimen3\font=0.2em% interword stretch
+%\fontdimen4\font=0.1em% interword shrink
+%\fontdimen7\font=0.1em% extra space
+
+\newdimen\origiwspc
+\origiwspc=\fontdimen2\font
+
+\def\setstretch#1{%
+  \fontdimen2\font=#1em% inter word space
+}
+
+\def\resetstretch{%
+  \fontdimen2\font=\origiwspc% (original) inter word space
+}
+
+\ifdefined\ebook
+\def\thepage{{\color{c-headline}\arabic{page}}}
+\fi
+
+\nonfrenchspacing
+
+\sfcode`\.1500
+\sfcode`\?1500
+\sfcode`\!1500
+\sfcode`\:1500
+\sfcode`\«1500
+\sfcode`\‹1500
+\sfcode`\;1500
+\sfcode`\,1250
+
+% ******************* Definitionen, Makros *********************
+
+%\def\initixal#1{\lettrine[lines=2,loversize=0.12]{\textcolor{grey}{#1}}{}}
+\def\initial#1{#1}
+
+\def\anhangnote#1{\endnote{#1}}
+
+\def\bibentry#1#2#3#4{%
+\noindent\textsc{#1}\\
+#2: \textit{#3,} #4.
+\medskip
+}
+
+\ifdefined\ebook
+\def\pagereference#1{{\color{c-headline}\pageref{#1}:\ref{#1}}}
+\else
+\def\pagereference#1{\pageref{#1}:\ref{#1}}
+\fi
+
+% Partseiten ohne Seitenzahl.
+\renewcommand*{\partpagestyle}{empty}
+
+% Chapterseiten ohne Seitenzahl.
+\renewcommand*{\chapterpagestyle}{empty}
+
+
+% Auffüllen.
+\newcounter{modresult}
+\newcommand{\fillup}[1]{%
+\setcounter{modresult}{%
+\value{page}-(\value{page}/#1)*#1%
+}%
+\ifthenelse{0=\themodresult}%
+{}%
+{\clearpage{}\pagestyle{empty}\null{}%
+\fillup{#1}}%
+}
+
+%\clubpenalty10000
+%\widowpenalty10000
+
+\flushbottom 
+
+\ifdefined\ebook%
+\thispagestyle{empty}%
+\pagestyle{empty}%
+% Seitenbreite / 13 * 2 + 3 = 23.769mm
+% Seitenhöhe / 13 = 16,538mm
+\changepage{}{}{}{-18.577mm}{}{-16.538mm}{}{}{}%
+\noindent%
+\makebox[0cm][c]{%
+  \raisebox{0cm}[0cm][0cm]{%
+    \includegraphics[scale=2.2,clip]{\coverbgfile}%
+  }%
+}%
+\includegraphics{cover-front-ebook.pdf}%
+\clearpage%
+\changepage{}{}{}{18.577mm}{}{16.538mm}{}{}{}%
+\setcounter{page}{1}%
+\fi
+
+% ************************ Vorspann ****************************
+\include{titel}
+
+
+
+
+% ************************** Roman *****************************
+% Keine Kopfzeile, aber Seitennummer.
+\pagestyle{plain}
+
+\tolerance=1250
+
+\linenumbers
+\modulolinenumbers[1000]
+
+\normalsize
+
+\input{erster_teil}
+
+\input{zweiter_teil}
+
+\input{dritter_teil}
+
+
+
+
+
+% ************************* Anhang *****************************
+\clubpenalty10000
+\widowpenalty10000
+
+% Leerseite zum Anhang lassen
+\thispagestyle{empty}
+
+\newpage\null
+
+\input{zum_band}
+
+
+\cleartooddpage
+\tableofcontents
+
+
+\ifdefined\ebook%
+\clearpage%
+\setcounter{page}{0}%
+\thispagestyle{empty}%
+\pagestyle{empty}%
+\changepage{}{}{}{-20mm}{}{-16.538mm}{}{}{}%
+\noindent%
+\makebox[0cm][c]{%
+\noindent\raisebox{0cm}[0cm][0cm]{%
+\noindent\includegraphics[scale=2.2,clip]{\coverbgfile}%
+}%
+}%
+\noindent\includegraphics{cover-back-ebook.pdf}%
+\else%
+% Auf Seitenzahl durch 4 teilbar auffüllen.
+\fillup{4}
+\fi%
+\end{document}

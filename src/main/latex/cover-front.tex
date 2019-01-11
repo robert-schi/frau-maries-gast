@@ -1,0 +1,64 @@
+\documentclass[11pt,twoside,openany,svgnames,x11names]{book}
+
+\input{commons}
+\input{definitions}
+
+\usepackage{changepage}
+\usepackage{geometry}
+\usepackage{graphicx}
+\usepackage{libertine}
+\usepackage{tikz}
+
+\usetikzlibrary{shapes,positioning}
+
+\geometry{
+  paperwidth=\dimexpr\TrimmingFB+\CoverWidth\relax,%
+  paperheight=\dimexpr\Trimming+\Trimming+\CoverHeight\relax,%
+  left=0cm,%
+  right=0cm,%
+  top=0cm,%
+  bottom=0 in,%
+  footskip=0.0in%  
+}
+
+\pagestyle{empty}
+
+\begin{document}%
+\frontmatter%
+\noindent
+\ifdefined\ebook
+  \makebox[0pt][l]{%
+    \raisebox{-\totalheight+0.5cm}[0pt][0pt]{%
+      \includegraphics[trim={15.0cm 0 0 0},clip]{\coverbgfile}}}
+\fi
+
+\vspace*{\dimexpr\Trimming+20mm\relax}
+
+\noindent\hspace*{\dimexpr \CoverWidth - 130mm \relax}\begin{tabular}{|c|}
+\multicolumn{1}{p{11cm}@{\hspace{1cm}}}{%
+  \raggedleft
+  \rule{0pt}{1cm}%
+  {\color{black}\fontsize{36}{44}\biolinumLF\selectfont{\buchautor{}}}\\
+  \vspace{2cm}
+  {\color{white}\fontsize{36}{44}\biolinumLF\selectfont{\textbf{\buchtitel{}}}}\\
+  \vspace{2.3cm}
+  {\color{black}\fontsize{24}{28}\biolinumLF\selectfont{Ein Roman}}
+}\\
+\end{tabular}
+
+\vfill
+
+\noindent\hspace*{6mm}\parbox{9cm}{%
+\noindent\color{white}\fontsize{20}{22}\libertineLF\selectfont{%
+\begin{center}%
+\color{c-10}»Es ist wahr, daß wir Tage\\
+\color{c-8}haben, wo wir uns packen\\
+\color{c-6}wie einen Krug und uns\\
+\color{c-4}umdrehen und verschütten.«
+\end{center}
+}%
+}
+
+\vspace*{\dimexpr\Trimming+5mm\relax}
+
+\end{document}

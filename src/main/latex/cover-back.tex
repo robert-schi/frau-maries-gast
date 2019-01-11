@@ -1,0 +1,88 @@
+\documentclass[11pt,twoside,openany,svgnames,x11names]{book}
+
+\input{commons}
+\input{definitions}
+
+\usepackage{calc}
+\usepackage{changepage}
+\usepackage{geometry}
+\usepackage{graphicx}
+\usepackage{libertine}
+\usepackage{tikz}
+
+\usetikzlibrary{shapes,positioning}
+
+\geometry{
+  paperwidth=\dimexpr\TrimmingFB+\CoverWidth\relax,%
+  paperheight=\dimexpr\Trimming+\Trimming+\CoverHeight\relax,%
+  left=0cm,%
+  right=0cm,%
+  top=0cm,%
+  bottom=0 in,%
+  footskip=0.0in%  
+}
+
+\pagestyle{empty}
+
+\begin{document}
+
+\ifdefined\ebook%
+\noindent%
+\makebox[0pt][l]{%
+\raisebox{-\totalheight+0.5cm}[0pt][0pt]{%
+\includegraphics[trim={15.0cm 0 0 0},clip]{\coverbgfile}}}%
+\fi
+
+\vspace*{0.1cm}
+
+\noindent\hspace*{\dimexpr \TrimmingFB + 15mm + \glueexpr \dimexpr \CoverWidth - 100mm \relax / 2 \relax \relax}\parbox{9cm}{%
+\noindent\color{white}\fontsize{20}{22}\libertineLF\textbf\selectfont{%
+\begin{center}%
+\color{c-4}Aber dann senkten sie\\
+\color{c-5}zusammen den Kopf in der\\
+\color{c-6}gleichen Art und sahen\\
+\color{c-7}vor sich hin und regten\\
+\color{c-8}sich nicht, während seine\\
+\color{c-9}Worte langsam niedersanken,\\
+\color{c-10}tonlos wie Schnee in einer\\
+\color{c-11}langen Winternacht.%
+\end{center}%
+}%
+}
+\vspace{0.8cm}
+
+\noindent \leftskip \dimexpr \TrimmingFB + \glueexpr \dimexpr \CoverWidth - 100mm \relax / 2 \relax \relax
+\begin{minipage}[t]{10cm}
+\color{black}\fontsize{14}{16}\biolinumLF\noindent{}%
+\buchautor{}s erster »Roman« ist bis heute
+weitgehend unbeachtet. Sehr zu Unrecht, denn es gibt einiges zu ent\-decken:
+Eine bunte Szenerie mit einer Vielzahl von Schauplätzen, märchenhafte
+Epi\-soden, ein Ensemble unterschiedlichster Fi\-gu\-ren\,… Melancholie,
+Träume, Musik, Na\-tur\-erleben, ungestüme Lebensfreude\,…
+
+\hspace{1em}Bemerkenswerterweise gibt es viele Parallelen zur Biografie
+des Autors.
+Vieles, was der junge Max Mohr erlebt, plant und was ihn bewegt, scheint
+gleichsam impulsiv seinen Weg in diese Novelle zu finden.
+
+\hspace{1em}Diese Ausgabe macht den Text von \textit{\buchtitel{}}
+nach fast 100 Jahren endlich wieder allgemein verfügbar.
+\end{minipage}
+
+\vfill
+
+\ifdefined\ebook
+\null
+\else
+\begin{center}
+\hspace*{\dimexpr\TrimmingFB\relax}ISBN \ISBN{}
+
+\vspace{0.5cm}
+
+\hspace*{\dimexpr\TrimmingFB\relax}\includegraphics{\FileBarcode}
+\end{center}
+\fi
+
+\vspace*{\dimexpr\Trimming+5mm\relax}
+
+\end{document}
