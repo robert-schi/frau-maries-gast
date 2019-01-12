@@ -1,4 +1,4 @@
-@Library('global-lib@komma') _
+@Library('global-lib') _
 
 
 properties([buildDiscarder(logRotator(numToKeepStr: '10'))])
